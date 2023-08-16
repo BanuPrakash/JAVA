@@ -199,3 +199,70 @@ java.getTitle() ==> on stack getTitle(Book this) {} ==> "this" --> context here 
 
 ```
 
+Logically grouping of class for enterprise application
+* entity class / domain class / model class
+business data, data is long lived beyond the life of application 
+they are used to map to persist store [ RDBMS / NoSQL / File ...]
+example:
+One entity Object maps to one table of RDBMS or Collection of MongoDB
+java fields --> map to columns of database table
+-> Uber application: Customer, Driver, Vehicle, Trip, Payment
+-> Swiggy: Customer, Product, Order, LineItem , ShipAddress, Payment, Supplier
+
+these classes are the simplest to create: --> no CRUD operations, no business logic,
+generally they only contain getters / setter
+
+* DAO --> Data Access object
+perform CRUD operations
+--> RDBMS : insert, select, update and delete SQL
+
+* Business 
+* Service 
+--> facade over DAO and business logic
+--> generally they contain atomic operations and make coarse grained operations over DAO fine grained operations
+
+* Exception classes --> to represent any abnormal condition
+* Utility classes --> Helpers
+* UI --> User interface / client code
+
+---
+
+Package --> folders for different types of logically grouped classes.
+
+DAO vs Service
+```
+public class AccountDao {
+    updateAccount(..)
+    createAccount(..)
+    deleteAccount(..)
+    lockAccount(..)
+    getBalance()
+    getTransactions()
+}
+
+public class CustomerService {
+    AccountDao accountDao = new AccountDao();
+
+    // this code should be Atomic in nature
+    public void transaction(Account from, Account to, double amt) {
+        getBalance();
+        run logic to check balance --> sufficient
+        updateAccount(from);
+        updateAccount(to);
+        insertIntoTxTable(..);
+        sendSMS();
+    }
+}
+
+Client calls transaction() one call which in turn has many fine grained operations
+
+public class ManagerService {
+     AccountDao accountDao = new AccountDao();
+
+    createAccount() {
+        accountDao.createAccount()
+    }
+
+    lockAccount()...
+}
+```
