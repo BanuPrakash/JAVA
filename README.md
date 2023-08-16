@@ -266,3 +266,25 @@ public class ManagerService {
     lockAccount()...
 }
 ```
+
+Packages:
+1) logically group classes
+2) avoid collusions usage classes with same name --> by using fully qualified name
+Example:
+java.util.Date [ Date is a class in "java.util" package]
+java.sql.Date [ Date is a class in "java.sql" package]
+
+
+All instance variables [Heap area] will have it's default values in heap area when created.
+int, short, byte, long --> 0
+double/float --> 0.0
+char --> Null character
+object --> NULL
+boolean --> false
+
+No Garbage / junk data in heap area
+
+All local variables [ in stack ] should be initialized before using
+
+
+

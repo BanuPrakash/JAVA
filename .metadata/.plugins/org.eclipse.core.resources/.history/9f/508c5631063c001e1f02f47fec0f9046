@@ -1,0 +1,12 @@
+/**
+ * 
+ */
+package com.adobe.prj.entity;
+
+/**
+ * @author banuprakash
+ *
+ */
+public class Account {
+
+}

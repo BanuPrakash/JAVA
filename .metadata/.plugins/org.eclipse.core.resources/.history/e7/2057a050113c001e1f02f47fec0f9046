@@ -1,0 +1,9 @@
+package com.adobe.prj.client;
+
+public class AccountClient {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

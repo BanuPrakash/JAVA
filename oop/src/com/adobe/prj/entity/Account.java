@@ -11,7 +11,7 @@ package com.adobe.prj.entity;
  * 
  */
 public class Account {
-	private double balance; // state, instance variable
+	private double balance; // state, instance variable 
 	private String accNo; // state, instance variable
 	
 	// default constructor
@@ -24,10 +24,18 @@ public class Account {
 		this.balance = balance;
 	}
 	
+	/**
+	 * method to credit amount into account
+	 * @param amt amount to be created
+	 */
 	public void deposit(double amt) {
 		this.balance += amt;
 	}
 	
+	/**
+	 * method to get existing balance in account
+	 * @return current balance
+	 */
 	public double getBalance() {
 		return this.balance;
 	}

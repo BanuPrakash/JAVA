@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.adobe.prj.entity;
+
+/**
+ * Business entity to represent Banking account.
+ * 
+ * @author banuprakash
+ * @version 1.0
+ * 
+ */
+public class Account {
+
+}

@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package com.adobe.prj.entity;
+
+/**
+ * Business entity to represent Banking account.
+ * 
+ * @author banuprakash
+ * @version 1.0
+ * 
+ */
+public class Account {
+	private double balance; // state, instance variable
+	private String accNo; // state, instance variable
+	
+	// default constructor
+	public Account() {
+	}
+	
+	
+	
+}
