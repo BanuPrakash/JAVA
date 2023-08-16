@@ -9,7 +9,7 @@ public class AccountClient {
 		Account rahulAcc = new Account("SA102", 5000.00); // parameterized constructor
 		System.out.println("Count " + Account.getCount()); // 1
 		Account swethaAcc = new Account("SA991", 9000.00); 
-		System.out.println("Count " + Account.getCount()); // 2
+		System.out.println("Count " + Account.getCount()); // 200
 		
 		swethaAcc.deposit(8122);
 		rahulAcc.deposit(12000.00);

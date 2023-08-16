@@ -13,23 +13,15 @@ package com.adobe.prj.entity;
 public class Account {
 	private double balance; // state, instance variable 
 	private String accNo; // state, instance variable
-	private static int count; // state of class, class member, default value is 0
 	
 	// default constructor
 	public Account() {
-		count++;
 	}
 
 	// parameterized constructor
 	public Account(String accNo, double balance) {
 		this.accNo = accNo;
 		this.balance = balance;
-		count++;
-	}
-	
-	// class member
-	public static int getCount() {
-		return count;
 	}
 	
 	/**

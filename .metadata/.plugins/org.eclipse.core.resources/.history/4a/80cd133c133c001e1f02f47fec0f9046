@@ -13,7 +13,7 @@ package com.adobe.prj.entity;
 public class Account {
 	private double balance; // state, instance variable 
 	private String accNo; // state, instance variable
-	private static int count; // state of class, class member, default value is 0
+	private int count; // default value is 0
 	
 	// default constructor
 	public Account() {
@@ -27,8 +27,7 @@ public class Account {
 		count++;
 	}
 	
-	// class member
-	public static int getCount() {
+	public int getCount() {
 		return count;
 	}
 	

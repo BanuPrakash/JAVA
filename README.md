@@ -286,5 +286,46 @@ No Garbage / junk data in heap area
 
 All local variables [ in stack ] should be initialized before using
 
+How many instances of Account are created?
+count variable
 
+=====================
+
+Task 1:
+```
+package com.adobe.prj.entity;
+Time.java
+
+public class Time {
+    private int hours;
+    private int min;
+    // consttructors
+    // getters and setters
+    // other methods
+}
+
+
+package com.adobe.prj.client
+TimeClient.java
+
+public class TimeClient {
+    public static void main(String[] args) {
+        Time t1 = new Time(4,30);
+        Time t2 = new time(3,45);
+
+        Time t3 = Time.add(t1, t2);
+
+        System.out.println( t3.getHours() + " : " + t3.getMin()); // 8:15
+        System.out.println( t1.getHours() + " : " + t2.getMin()); // 4:30
+        System.out.println( t1.getHours() + " : " + t2.getMin()); // 3:45
+
+        Time t4 = t1.add(t2);
+        System.out.println( t4.getHours() + " : " + t4.getMin()); // 8:15
+        System.out.println( t1.getHours() + " : " + t2.getMin()); // 4:30
+        System.out.println( t1.getHours() + " : " + t1.getMin()); // 3:45
+        
+    }
+}
+
+```
 
