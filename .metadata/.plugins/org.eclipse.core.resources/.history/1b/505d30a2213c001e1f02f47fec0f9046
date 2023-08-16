@@ -19,13 +19,5 @@ public class Mobile extends Product {
 		this.connectivity = connectivity;
 	}
 	
-	@Override
-	public boolean isExpensive() {
-		if("3G".equals(connectivity) && getPrice() > 3500.00) {
-			return true;
-		} else if("4G".equals(connectivity) && getPrice() > 15000.00) {
-			return true;
-		}
-		return false;
-	}
+	
 }

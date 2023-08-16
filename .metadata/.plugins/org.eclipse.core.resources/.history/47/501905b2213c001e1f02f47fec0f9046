@@ -19,5 +19,4 @@ public class Tv extends Product {
 		this.screenType = screenType;
 	}
 	
-	// here isExpensive() is inherited
 }

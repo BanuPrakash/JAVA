@@ -423,3 +423,21 @@ p.getPrice(); // 5555
 
 All instance methods in Java are virtual by default --> dynamic binding
 
+Prefer:
+"4G".equals(connectivity) --> true or false
+over
+connectivity.equals("4G") --> true/false and can result in NullPointerException
+
+instanceof vs getClass()
+
+Product p = new Tv();
+
+p instanceof Tv ==> true
+p instanceof Product ==> true
+p instanceof Object ==> true
+p instanceof Mobile ==> false
+
+p.getClass() =====> Tv.class
+
+p.getId(); ==> context is "object" when method name is know in advance
+p.getPrice();
