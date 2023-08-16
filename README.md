@@ -299,7 +299,7 @@ Time.java
 public class Time {
     private int hours;
     private int min;
-    // consttructors
+    // constructors
     // getters and setters
     // other methods
 }
@@ -323,9 +323,103 @@ public class TimeClient {
         System.out.println( t4.getHours() + " : " + t4.getMin()); // 8:15
         System.out.println( t1.getHours() + " : " + t2.getMin()); // 4:30
         System.out.println( t1.getHours() + " : " + t1.getMin()); // 3:45
-        
     }
 }
 
 ```
+
+Class & Object
+instance variables --> heap area, created for every object --> initialized with default values
+static variable --> Metaspace, created per class --> initialized with default values
+local variable --> stack --> need to initialize before we use
+
+instance method --> called with object context, first argument is implicit "this" --> context
+static method --> called with class contenxt, no implicit "this" is passed as argument
+
+--------
+
+Relationship between objects:
+1) Generalization and Specialization
+2) Realization
+3) Association
+4) Uses A
+
+Generalization and Specialization relationship --> Inheritance
+
+Java build tools:
+1) Maven / Gradle --> manage dependencies, compile, deploy, ...
+2) SonarQube or [Checkstyle / PMD / findBugs] --> static code analyis
+Checkstyle: naming conventions, comments
+PMD or FindBugs: Good programming practice [ find duplicate code [ Copy & Paste code], unreachable code, bad exception handling, empty catch blocks, ...]
+3) Jenkins: CI / CD
+4) JUNIT: Testing framework for Unit testing
+...
+
+```
+Constructor behaviour in inheritenace
+// Product inheritance from Object [ implicit]
+public class Product {
+    Product() {
+        s.o.p("P1");
+    }
+
+    Product(int id, String name, double price) {
+        s.o.p("P2");
+    }
+}
+
+public class Mobile extends Product {
+    Mobile() {
+        s.o.p("M1");
+    }
+
+    Mobile(int id, String name, double price, String connectivity) {
+        s.o.p("M2");
+    }
+}
+
+new Mobile(); // Object(), Product(), Mobile() ==> P1, M1
+new Mobile(331, "iPhone 14", 89000.00, "4G"); ==> Object(), Product(),  Mobile(int id, String name, double price, String connectivity) ==> P1, M2
+
+```
+
+How methods work in inheritance
+
+```
+public class Product {
+   public  double getPrice() {
+    return 1000;
+   }
+}
+
+public class Mobile extends Product {
+    // override
+   public double getPrice() {
+    return 9999;
+   }
+
+   public String getConnectivity() {
+    return "5G";
+   }
+}
+
+
+public class Tv extends Product {
+    public double getPrice() {
+        return 5555;
+    }
+}
+Mobile m = new Mobile();
+m.getPrice(); // 9999
+m.getConnectivity();  // 5G
+
+Product p = new Mobile();
+p.getPrice(); // 9999
+p.getConnectivity(); // ERROR
+
+p = new Tv();
+p.getPrice(); // 5555
+```
+
+All instance methods in Java are virtual by default --> dynamic binding
 
