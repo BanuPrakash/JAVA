@@ -106,4 +106,96 @@ KDK [ Kotlin] ==> Kotlin Compiler ==> bytecode
 Groovy DK ==> Groovy Compliler ==> bytecode
 
 ============================
+visibility : public, private, protected and default scope
+
+```
+Book.java
+
+public class Book {
+    private String title; // state, instance varible
+    private double price; // state, instance varible
+
+    public void setTitle(String t) {
+        this.title = t;
+    }
+
+    public void setPrice(double p) {
+        this.price = p;
+    }
+
+    public double getPrice() {
+        return this.price;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+}
+
+javac Book.java ---> Book.class [ bytecode]
+
+Example.java
+public class Example {
+    public static void main(String[] args) {
+        Book java = new Book();
+        java.setTitle("Head First Java");
+        java.setPrice(560.00);
+
+        Book react = new Book();
+        react.setTitle("React Unleashed");
+        react.setPrice(890.00);
+
+        System.out.println(java.getTitle() + ", " + java.getPrice());
+    }
+}
+
+javac Example.java ---> Example.class
+
+Java Compiletime Environment
+
+Java Runtime Environment
+
+Classloader
+Default classloader, Network based classloader, Custom Classloader [ CISCO settop box, Samsung Harman, ..]
+
+bytecode from secondary storage to primary storage
+Search in current folder or CLASSPATH [ environment variable]
+set classpath=.;/users/banuprakash/code;/users/banprakash/project
+
+* findLoadedClass()
+* loadClass()
+* findSystemClass() --> platform has APIs loaded
+* defineClass()
+
+java Example 
+1) check Example.class if already present in JVM
+2) NO --> loadClass() is exectuted
+3) String.class --> findLoadedClass() --? false --> loadClass() --> false --> findSystemClass() --> load into JVM
+
+4) load Book.class ---> loadClass()
+5) System.class --> findSystemClass()
+
+Around 132+ files are loaded into JVM
+
+defineClass() ---> convert bytecode to system specific code [ architecture/os]
+
+bytecode --> Metaspace / Method Area [prior to java 8]
+
+-----
+java.setTitle("Head First Java"); 
+setTitle(java, "Head First Java"); // context becomes implicit first argument
+
+
+public void setTitle(String t) {
+        this.title = t;
+}
+becomes
+
+public void setTitle(Book this, String t) {
+        this.title = t;
+}
+
+java.getTitle() ==> on stack getTitle(Book this) {} ==> "this" --> context here is "java"
+
+```
 
