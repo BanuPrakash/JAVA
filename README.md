@@ -62,3 +62,48 @@ bash terminal> mysql -u "root" -p
 
 mysql> exit
 ```
+
+OOP 
+* Real world
+* Object --> State and Behaviour
+Object first approach
+Blue print / Prototype to create object
+class [Java / C++ / TypeScript], function [ JS ], Type
+
+class Tv {
+    int volume;
+}
+
+function Tv (volume) {
+}
+
+Type Tv
+End Type
+
+---------
+
+SOLID design Principle
+S --> Single Responsibility
+Object to perform CRUD operations [ CREATE / READ/ UPDATE/ DELETE] --> File / DB / NOSQL
+Object for UI
+Object for Business logic
+
+O --> Open Close Principle [ Closed for Change and Open for Extension]
+L --> Liskov Substitution Principle
+I --> Interface segregation
+D --> Dependency Injection
+
+-----------------
+
+Java: Technology
+Platform to execute bytecode [ portable ]
+
+ByteCode
+
+Source Code ===> Compiled ===> ByteCode
+JDK         ==> Java Compiler ==> bytecode
+KDK [ Kotlin] ==> Kotlin Compiler ==> bytecode
+Groovy DK ==> Groovy Compliler ==> bytecode
+
+============================
+
