@@ -692,3 +692,45 @@ Comparator --> logic goes in client application and not in Object [ fields other
 
 String --> Comparable compare on lexical ordering
 String --> compare based on length ---> Comparator
+
+ByteCode Instrumentation
+
+List is a interface --> JCF
+* ordered collection
+* index based operations
+* supports duplicate elements
+* re-order [ shuffle, reverse, sort]
+
+Implementations:
+ArrayList
+LinkedList
+Vector [ legacy ] --> slow because of locking mechanism --> methods are synchronized
+Stack [ legacy ] --> slow because of locking mechanism --> methods are synchronized
+* Apache collections
+* https://www.vavr.io/
+
+ArrayList
+* like array but can grow / shrink
+* internal mechaism takes care of moving objects if any arbitray add / remove operations
+
+LinkedList
+* doubly linkedlist
+
+ArrayList list = new ArrayList(); // avoid this , always program to interface
+
+List list = new ArrayList(); // avoid this, use generics for type-safety
+list.add("A");
+list.add(new Book());
+list.add(3);
+
+if(list.get(i) instanceof String) {
+    String s = (String) list.get(i);
+}
+
+Prefer:
+List<String> names = new ArrayList<>(); // type-safe collection
+List<Employee> employees = new ArrayList<>();
+
+
+
+
