@@ -732,5 +732,62 @@ List<String> names = new ArrayList<>(); // type-safe collection
 List<Employee> employees = new ArrayList<>();
 
 
+Task:
+Set, HashSet and TreeSet
+
+java 8 streams:
+ streams are wrappers around a data source, allowing us to operate with that data source and making bulk processing convenient and fast.
+
+ HOF --> functions which accept function as argument
+ * map() --> transformFn
+ * filter() --> based on predicate
+ * skip()
+ * flatMap()
+ * reduce()
+ * forEach()
+ * collect()
+
+ map(transformFn) {
+    list[]
+    for( every elem from stream) {
+            list.push(transformFn(elem));
+    }
+    return list;
+ }
+
+Terminal functions:
+1) forEach()
+2) reduce()
+3) collect()
+
+Intermediate functions:
+1) filter()
+2) map()
+3) flatMap()
+4) skip()
+5) limit()
+
+https://rxmarbles.com/
+
+```
+1) Filter needs Predicate
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T t);
+}
+
+2) Map needs transform function
+public interface Function<T, R> {
+     R apply(T t);
+}
+
+3) forEach needs Consumer
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+```
+
+
 
 
