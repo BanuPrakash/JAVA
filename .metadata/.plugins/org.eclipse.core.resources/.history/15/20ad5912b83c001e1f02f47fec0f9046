@@ -1,6 +1,6 @@
 package com.adobe.prj.entity;
 
-public class Tv extends Product {
+public abstract class Tv extends Product {
 	private String screenType;
 
 	public Tv() {
@@ -17,11 +17,6 @@ public class Tv extends Product {
 
 	public void setScreenType(String screenType) {
 		this.screenType = screenType;
-	}
-
-	@Override
-	public boolean isExpensive() {
-		return false;
 	}
 	
 	// here isExpensive() is inherited

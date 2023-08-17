@@ -441,3 +441,31 @@ p.getClass() =====> Tv.class
 
 p.getId(); ==> context is "object" when method name is know in advance
 p.getPrice();
+
+===
+
+Day 2
+
+Recap: OOP, SOLID design principle, instance and static variables and methods
+
+Generalization and Specialization relationship --> inheritance "extends" in java
+
+* java.lang.Object is the root class for every object
+* Java doesn't support multiple inheritance [ extends A, B is not allowed]
+* override [ specialized class is going to suppress existing behaviour with new behaviour]
+* overload --> look into it. ==> based on arguments different methods are called
+
+To SalesGuy: I want to buy a Product?
+:-( 
+Which Product
+
+To Manager: I need to open a Account?
+:-(
+SA/CA/LA ?
+
+
+abstract class --> can't instantiate abstract class --> too generic, doesn't exist in real world. meant only for pushing common state and behaviour in generalized class
+
+abstract method --> can't provide logic, specialized ones should compulsorily override and provide appropriate logic.
+
+

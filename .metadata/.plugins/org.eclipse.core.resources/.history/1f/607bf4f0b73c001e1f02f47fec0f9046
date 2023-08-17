@@ -38,9 +38,7 @@ public abstract class Product {
 		this.price = price;
 	}
 
-//	public boolean isExpensive() {
-//		return false;
-//	}
-	
-	public abstract boolean isExpensive(); // pure virtual function
+	public boolean isExpensive() {
+		return false;
+	}
 }
