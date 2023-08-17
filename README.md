@@ -523,6 +523,7 @@ Why Program to Interface?
 3) TESTING
 4) INTEGRATION
 5) LOOSE COUPLING
+6) OCP
 
 you can't instantiate a interface like abstract class.
 
@@ -537,5 +538,20 @@ variable = "java.lang.String";
 variable = "com.adobe.prj.entity.Book";
 
 Class.forName(variable).getDeclaredConstructor().newInstance();
+
+====
+package java.lang;
+public interface Comparable {
+    public int compareTo(Object o);
+}
+
+
+"Scarlett".compareTo("Angelina"); > 0
+
+Circle c1 ---
+Circe c2 ---
+c1.compareTo(c2) --> 0
+
+Each of these classes like Circle, Rectangle, String should realize Comparable
 
 

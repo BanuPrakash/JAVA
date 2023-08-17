@@ -1,0 +1,17 @@
+package com.adobe.prj.client;
+
+import com.adobe.prj.util.Utility;
+
+public class SortClient {
+
+	public static void main(String[] args) {
+		String[] names = {"Nolan", "Scarlett", "Angelina", "Lucy", "Brad", "George"};
+		
+		Utility.sort(names);
+		
+		for(String name : names) {
+			System.out.println(name);
+		}
+	}
+
+}
