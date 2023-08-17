@@ -789,5 +789,20 @@ public interface Consumer<T> {
 ```
 
 
+products.parallelStream()
+		.filter(p -> p.getCategory().equals("computer"))
+		.map(p -> p.getPrice())
+		.reduce((v1,v2) -> v1 + v2);
+
+====
+
+Day 2 Task:
+Set, HashSet, TreeSet
+Exception Handling
+Comments in Java, Naming Conventions
+
+------
+Day 3:
+Annotation, Maven, Database interaction and Web application
 
 
