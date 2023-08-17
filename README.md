@@ -30,7 +30,7 @@ Lombok
 Download:
 https://repo1.maven.org/maven2/org/projectlombok/lombok/1.18.28/lombok-1.18.28.jar
 install:
-java -jar lombok.1.18.28.jar
+java -jar lombok-1.18.28.jar
 
 3) MySQL  
 
@@ -554,4 +554,141 @@ c1.compareTo(c2) --> 0
 
 Each of these classes like Circle, Rectangle, String should realize Comparable
 
+========
 
+class can implement multiple interface [ implements] but can be specialized of only one [extends]
+
+```
+interface Comparable {
+    int compareTo(Object o);
+}
+interface Flyable {
+    void fly();
+}
+
+public class Eagle extends Bird implements Comparable, Flyable {
+
+}
+```
+Interface Segreggation:
+
+```
+interface Swim {
+    void swim();
+}
+
+interface Dance {
+    void dance();
+}
+
+interface Fight {
+    void fight();
+}
+
+class Actor implements Dance {
+    // state and behaviour
+    public void dance() {
+        ...
+    }
+}
+
+class Hero extends Actor implements Swim, Fight {
+    // state and behaviour
+    public void swim() {
+        ..
+    }
+    public void fight() {
+        ...
+    }
+}
+
+Fight f = new Fight();
+
+Fight f = new Actor();
+
+Fight f = new Hero();
+f.fight();
+f.dance();
+f.swim();
+
+Dance d = (Dance) f;
+d.dance();
+
+```
+
+Exception Handling
+Exception ?
+try / catch / finally 
+
+==================
+Anonymous class and Lambda --> InterfaceExample.java
+
+Generics
+```
+public class Rectangle {
+    int width;
+    int breadth;
+    //
+}
+
+public class DRectangle {
+    double width;
+    double breadth;
+    //
+}
+
+public class LinkedList {
+    Node[] nodes;
+}
+
+class Node {
+    int data;
+    int prev;
+    int next;
+}
+
+---
+public class Rectangle<T> {
+    T width;
+    T breadth;
+    //
+}
+
+Rectangle<Integer> r1 = new Rectangle<>(4,5);
+
+Rectangle<Double> r2 = new Rectangle<>(1.4,3.5);
+
+Rectangle<String> r3 = new Rectangle<>("1 inch","5 cm");
+
+Generics is limited to Object type in Java
+
+Rectangle<int> r1 = new Rectangle<>(4,5); // ERROR
+
+Integer, Double, Float, Long, Short, ... are type wrapper classes for primitive types
+
+int x = 10;
+Integer iX = x; // boxing
+..
+int y = iX; // unboxing
+y++;
+```
+
+Java Data Containers ===> Java Collection Framework
+Array is a datacontainer --> first choice as data container
+Limitations --> Size is fixed, adding / remove from arbitrary position, Contiguos memory
+
+JCF has:
+1) interfaces
+2) implementation classes
+3) Utility / Algorithim classes which as methods like sort(), max(), binearySearch(), shuffle(), reverse(), ....
+
+Comparable vs Comparator interface
+
+Common: both are used for Comparision for sort(), max(), min(), ...
+
+Difference:
+Comparable --> is part of Object which we are comparing, generally based on PK [ unique field]
+Comparator --> logic goes in client application and not in Object [ fields other than PK ]
+
+String --> Comparable compare on lexical ordering
+String --> compare based on length ---> Comparator
