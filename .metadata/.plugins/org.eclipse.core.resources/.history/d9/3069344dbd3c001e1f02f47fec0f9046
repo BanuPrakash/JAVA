@@ -1,0 +1,10 @@
+package com.adobe.prj.client;
+
+public class MobileClient {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

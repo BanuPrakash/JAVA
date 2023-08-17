@@ -468,4 +468,74 @@ abstract class --> can't instantiate abstract class --> too generic, doesn't exi
 
 abstract method --> can't provide logic, specialized ones should compulsorily override and provide appropriate logic.
 
+====
+
+Realization Relationship
+One Element (client) realizes the behaviour that the other element (supplier) specifies.
+Program to Contract
+
+in Java we implement this relationship with "interface"
+
+```
+interface EmployeeDao {
+    void addEmployee(Employee e); // methods are public and abstract by default
+    Employee getEmployee(int id);
+}
+
+public class EmployeeDaoDbImpl implements EmployeeDao {
+    // state and behaviour
+    public void addEmployee(Employee e) {
+        INSERT INTO ...
+    }
+    public Employee getEmployee(int id) {
+        SELECT * from ...
+    }
+}
+
+
+public class EmployeeDaoMongoDbImpl implements EmployeeDao {
+    // state and behaviour
+    public void addEmployee(Employee e) {
+        db.employees.insert({...})
+    }
+    public Employee getEmployee(int id) {
+        db.employees.findBy({...});
+    }
+}
+
+public class AppService {
+    EmployeeDao employeeDao = new EmployeeDaoMongoDbImpl();
+
+    public void insert(Employee e) {
+        employeeDao.addEmployee(e);
+    }
+
+    public Employee fetch(int id) {
+        return employeeDao.getEmployee(id);
+    }
+}
+
+```
+
+Why Program to Interface?
+1) DESIGN
+2) IMPLEMENTATION
+3) TESTING
+4) INTEGRATION
+5) LOOSE COUPLING
+
+you can't instantiate a interface like abstract class.
+
+ClassLoader loads Book.class and Author.class into JVM metaspace
+Book b; 
+Author a;
+
+If we know class name in advance: new ClassName();
+
+If we don't know class name in advance, how to create object?
+variable = "java.lang.String";
+variable = "com.adobe.prj.entity.Book";
+
+Class.forName(variable).getDeclaredConstructor().newInstance();
+
 
