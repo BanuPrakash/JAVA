@@ -1118,3 +1118,5 @@ mysql> select * from products;
 executeUpdate() for INSERT, DELETE and UPDATE SQL
 executeQuery() for SELECT statement
 
+Resume @ 4:20
+
