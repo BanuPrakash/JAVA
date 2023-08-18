@@ -870,3 +870,9 @@ Caused by: org.eclipse.lsp4j.jsonrpc.ResponseErrorException: The request (id: 42
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2023-08-18 12:41:13.898
 !MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2023-08-18 12:45:09.422
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+!ENTRY org.eclipse.m2e.logback.appender 2 0 2023-08-18 12:45:09.423
+!MESSAGE Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!

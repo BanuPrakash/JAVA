@@ -1033,4 +1033,53 @@ https://repo1.maven.org/maven2/
 Maven also manages trasitive dependencies
 mysql-connector-j depends on "google protobuf --> GRPC" --> download protobuf.jar with correct version
 
+-------------
+
+JDBC --> Java Database Connectivity --> Integration API for integrating JAVA <---> RDBMS
+
+JDBC provides set of interfaces to perform CRUD operations on RDBMS
+
+implementation classes are provided by database vendors
+mysql-connector-j-8.1.0.jar --> MySQL
+ojdbc-7.jar --> Oracle
+
+Steps to interact with RDBMS:
+1) Load database vendor provided drivers
+
+Class.forName("com.mysql.jdbc.cj.Driver");
+Class.forName("oracle.jdbc.Driver");
+
+2) Establish a database connection
+
+java.sql.Connection con = DriverManager.getConnection(URL, USERNAME, PWD);
+
+getConnection() is a factory method; 
+if URL points to MySQL --> creates MySQLConnection
+if URL points to Oracle --> creates OracleConnection
+
+Connection is a interface
+
+Examples of URL:
+jdbc:mysql://192.24.134.11:3306/employee_db
+jdbc:oracle:@thin:@192.24.134.11:1521/employee_db
+...
+
+3) use Statement, PreparedStatement, CallableStatement to Send SQL to database
+3.1) Statement
+    use this if SQL is fixed; same SQL for all requests
+    Example: select * from products
+3.2) PreparedStatement
+    use this if SQL depends on IN parameter [?]
+
+    select * from products where id = ?
+
+    insert into products values(?, ?, ?);
+
+4) ResultSet
+    is a cursor to fetched records
+
+5) close resources in finally block
+
+
+
 
