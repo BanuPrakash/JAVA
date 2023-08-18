@@ -1118,5 +1118,111 @@ mysql> select * from products;
 executeUpdate() for INSERT, DELETE and UPDATE SQL
 executeQuery() for SELECT statement
 
-Resume @ 4:20
+=============
 
+Web Application development using Java
+JSE --> Java Standard Edition --> core java
+JEE --> Java Enterprise Edition
+* enterprise application ==> large scale, heterogenous clients
+* Web application
+* Distributed computing
+* Naming service
+* mail service
+...
+
+Dynamic content
+ASP engine, PHP engine, Servlet engine
+
+Servlet --> server side java application --> Servlet engine
+
+Servlet engines -> Jetty , Tomcat, Netty, ...
+
+
+@WebServlet("/login")
+public class LoginServlet extends HttpServlet {
+
+}
+
+@WebServlet("/register")
+public class RegisterServlet extends HttpServlet {
+
+}
+
+http://localhost:1234/register
+
+HttpServletRequest encapsulates all data from client [ client data / form data + Browser + OS]
+
+HttpServletResponse is used to write data back to client
+
+Once Response is commited to client, HttpServletRequest and HttpServletResponse objects are destroyed
+and Thread is released back to the pool
+
+Servlet engine manages:
+1) creating instance servlet
+2) creates HttpServletRequest , HttpServletResponse
+3) Dependency injection: HttpServletRequest , HttpServletResponse are passed to appropriate Servlet which has a matching URL
+4) Once Response is commited to client, HttpServletRequest and HttpServletResponse objects are destroyed
+and Thread is released back to the pool
+
+---------
+
+@WebServlet("/register") --> used to map URL to Servlet
+
+Http Methods:
+1) GET --> READ
+2) POST --> CREATE
+3) PUT --> UPDATE
+4) DELETE --> DELETE
+5) PATCH --> PARTIAL UPDATE
+
+GET: address bar and hyperlink --> default GET request, no payload
+POST: generally FORM data, payload contains user data
+
+POST and PUT/ PATCH contains payload --> NOT SAFE METHODS
+
+GET, DELETE --> No Payload --> SAFE METHODS
+
+IDEMPOTENT 
+
+```
+
+@WebServlet("/products")
+public class ProductServlet extends HttpServlet {
+    public void doGet(HttpServletRequest req, HttpServletResponse res) {
+
+    }
+    public void doPost(HttpServletRequest req, HttpServletResponse res) {
+        
+    }
+}
+
+```
+GET http://localhost:1234/products
+
+POST http://localhost:1234/products
+
+=========
+
+Servlet engine metadata can be XML or Annotation
+Deployment descriptor:
+
+SAXParser
+1)
+public class ProductServlet extends HttpServlet {}
+web.xml
+<web>
+    <servlet>
+        <servlet-name>First</servlet-name>
+        <serlvet-class>com.adobe.prj.web.ProductServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>First</servlet-name>
+        <url-pattern>/products</url-pattern>
+    </servlet-mapping>
+</web>
+
+2) Annotation
+
+@WebServlet("/products")
+public class ProductServlet extends HttpServlet {
+}

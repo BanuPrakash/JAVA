@@ -34,7 +34,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
 	@Override
 	public List<Product> getProducts() throws DaoException {
-		String SQL = "SELECT id, names, price, quantity FROM products";
+		String SQL = "SELECT id, name, price, quantity FROM products";
 		List<Product> products = new ArrayList<>();
 		Connection con = null;
 		
@@ -61,12 +61,15 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
 	@Override
 	public Product getProduct(int id) throws DaoException {
+		String SQL = "SELECT id, names, price, quantity FROM products where id = ?";
+		// PreparedStatement
 		return null;
 	}
 
 	@Override
 	public void updateProduct(Product p) throws DaoException {
-		
+		String SQL = "UPDATE products set price =?, quantity =? where id = ?";
+		// PreparedStatement
 	}
 
 }
