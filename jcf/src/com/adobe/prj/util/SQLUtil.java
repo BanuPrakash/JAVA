@@ -11,7 +11,7 @@ public class SQLUtil {
 	// create table EMP (EMP_ID NUMERIC(10), ENAME VARCHAR(100), SAL NUMERIC(12,2))
 	public static String createStatement(Class<?> clazz) {
 		StringBuilder builder = new StringBuilder();
-		Table table = clazz.getAnnotation(Table.class);
+		Table table = clazz.getAnnotation(Table.class); // @Table(name="BOOKS")
 		if( table != null) {
 			builder.append("create table ");
 			builder.append(table.name()); 
@@ -37,7 +37,9 @@ public class SQLUtil {
 	
 	// insert into books values (...)
 	// insert into emp values (...)
-	public static String insertSQL() {
+	public static String insertSQL(Object obj) {
+		Class<?> clazz = obj.getClass();
+		// invoke() method... to call getters to get data for INSERT SQL
 		return null;
 	}
 }

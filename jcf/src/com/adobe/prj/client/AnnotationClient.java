@@ -12,6 +12,15 @@ public class AnnotationClient {
 		
 		createSQL = SQLUtil.createStatement(Employee.class);
 		System.out.println(createSQL);
+		
+		Book b = new Book(34, "Head First Java", 450.00);
+		
+		String insertSQL = SQLUtil.insertSQL(b);
+		// insert into books values( 34 , 'Head First Java', 450.00);
+		System.out.println(insertSQL);
+		
+		
+		
 	}
 
 }
