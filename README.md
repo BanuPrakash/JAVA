@@ -997,5 +997,40 @@ String is immutable, use StringBuffer or StringBuilder to mutate a String.
 
 createStatement(Book.class);
 
+==================
+
+Maven / Gradle:
+Maven is a build automation tool used primarily for Java projects.
+* Manage dependencies --> 3rd party dependency library
+* compile
+* test
+* bundle
+* deploy
+* start server
+...
+
+
+3rd party dependencies --> "jar" files in repository --> Java Archive
+
+pom.xml --> Project Object Model --> all configuration about dependencies and goals are configured in the pom.xml [ shared to all team member]
+
+pom.xml
+<dependencies>
+    <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>8.1.0</version>
+    </dependency>
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.28</version>
+    </dependency>
+</dependencies>
+
+https://repo1.maven.org/maven2/
+
+Maven also manages trasitive dependencies
+mysql-connector-j depends on "google protobuf --> GRPC" --> download protobuf.jar with correct version
 
 
