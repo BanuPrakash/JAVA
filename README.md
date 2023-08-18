@@ -805,4 +805,59 @@ Comments in Java, Naming Conventions
 Day 3:
 Annotation, Maven, Database interaction and Web application
 
+Recap: 
+interface and its uses.
+
+Comparable, Comparator interfaces
+Arrays and Collections utility classes --> sort(), max(), binarySerach(), ...
+Arrays can be used on array type of data container
+Collections can be used on List type of data container
+
+List interface
+* ArrayList
+* LinkedList
+
+Iterable : all collections are iterable
+
+```
+public interface Iterable<T> {
+    Iterator<T> iterator();
+}
+
+public interface Iterator<E> {
+    boolean hasNext();
+    E next();
+    void remove();
+}
+List<Product> products = new ArrayList<>();
+
+products.add(new Product(53, "Wacom", 5600.00, "computer"));
+products.add(new Product(61, "Sony Bravia", 298000.00, "tv"));
+products.add(new Product(891, "Logitech Mouse", 890.00, "computer"));
+products.add(new Product(4, "iPhone 14", 78000.00, "mobile"));
+products.add(new Product(62, "Oneplus Nord", 56000.00, "mobile"));
+
+Iterator<Product> iter = products.iterator();
+while(iter.hasNext()) {
+    Product p = iter.next();
+    if(condition) {
+        iter.remove();
+    }
+}
+```
+Set --> unique collection, not ordered, can't be re-ordered
+ 
+Map is a data container which produces collection; it's a key/value pair
+Examples: Dictionary --> key is the word and value is meaning
+unique --> key
+duplicate --> value
+
+any registry is a Map type of data container
+
+HashCode? --> numerical representation of Object
+* similar objects should have same hashcode
+* dissimilar objects can also have same hashcode [ collision ]
+* Hash based contaniers uses hashcode to find duplicates and positioning of element in container
+
+HashBased containers: HashSet, Hashtable [ legacy ], HashMap
 
