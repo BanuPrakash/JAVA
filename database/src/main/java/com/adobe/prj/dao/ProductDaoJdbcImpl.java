@@ -34,7 +34,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
 	@Override
 	public List<Product> getProducts() throws DaoException {
-		String SQL = "SELECT id, name, price, quantity FROM products";
+		String SQL = "SELECT id, names, price, quantity FROM products";
 		List<Product> products = new ArrayList<>();
 		Connection con = null;
 		

@@ -1115,58 +1115,6 @@ mysql> insert into products values (0, 'Microsoft Mouse', 1500.00, 100);
 
 mysql> select * from products;
 
-public class PersistenceException extends Exception {
-    PersistenceException(String msg) {
-        super(msg);
-    }   
-}
+executeUpdate() for INSERT, DELETE and UPDATE SQL
+executeQuery() for SELECT statement
 
-public class FetchException extends Exception {
-    FetchException(String msg) {
-        super(msg);
-    }
-}
-
-
-interface ProductDao {
-    void addProduct(Product p) throws PersistenceException;
-    List<Product> getProducts() throws FetchException;
-}
-
-
-
-public class ProductDaoJdbcImpl implements ProductDao {
-    public void addProduct(Product p) throws PersistenceException{
-        try {
-        // code
-        } catch(SQLException ex) {
-            // based on error code
-            throw new PersistenceException("product with id already exists!!");
-        }
-    }
-}
-
-
-public class ProductDaoMongoDbImpl implements ProductDao {
-    public void addProduct(Product p)  throws PersistenceException{
-        try {
-            //
-        } catch(MongoException ex) {
-             throw new PersistenceException("product with id already exists!!");
-        }
-    }
-}
-
-public class Client {
-    public static void main(String[] args) {
-        Product p = ...
-        try {
-        ProductDao productDao = 
-            ProductDaoFactory.getProductDao();
-        productDao.addProduct(p);
-        } catch(Persistence ex) {
-            ex.getMessage();
-            ex.printStackTrace();
-        }
-    }
-}
