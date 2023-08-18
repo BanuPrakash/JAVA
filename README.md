@@ -1082,4 +1082,91 @@ jdbc:oracle:@thin:@192.24.134.11:1521/employee_db
 
 
 
+Docker is a container to run applications
 
+image --> software
+container -> application running image
+
+docker run -p 3306:3306 -d --name local-mysql -e MYSQL_ROOT_PASSWORD=Welcome123 mysql
+
+mysql --> image
+run --> pull mysql image from docker hub onto localmachine and run as --name local-mysql <<container>>
+
+-p --> mysql on docker container runs on "3306" port expose it to other application on "3306"
+
+-p 1234:3306 ==> mysql running on "3306" port in container is accessable on "1234" port for other application
+
+====
+
+docker run --name local-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=Welcome123 -d mysql
+
+% docker exec -it local-mysql bash
+# mysql -u root -p
+Enter password: Welcome123
+
+mysql> create database NCG_DB;
+
+mysql> use NCG_DB;
+
+mysql>  create table products (id int PRIMARY KEY AUTO_INCREMENT, name VARCHAR(100), price double, quantity int);
+
+mysql> insert into products values (0, 'Wacom', 4500.00, 100);
+mysql> insert into products values (0, 'Microsoft Mouse', 1500.00, 100);
+
+mysql> select * from products;
+
+public class PersistenceException extends Exception {
+    PersistenceException(String msg) {
+        super(msg);
+    }   
+}
+
+public class FetchException extends Exception {
+    FetchException(String msg) {
+        super(msg);
+    }
+}
+
+
+interface ProductDao {
+    void addProduct(Product p) throws PersistenceException;
+    List<Product> getProducts() throws FetchException;
+}
+
+
+
+public class ProductDaoJdbcImpl implements ProductDao {
+    public void addProduct(Product p) throws PersistenceException{
+        try {
+        // code
+        } catch(SQLException ex) {
+            // based on error code
+            throw new PersistenceException("product with id already exists!!");
+        }
+    }
+}
+
+
+public class ProductDaoMongoDbImpl implements ProductDao {
+    public void addProduct(Product p)  throws PersistenceException{
+        try {
+            //
+        } catch(MongoException ex) {
+             throw new PersistenceException("product with id already exists!!");
+        }
+    }
+}
+
+public class Client {
+    public static void main(String[] args) {
+        Product p = ...
+        try {
+        ProductDao productDao = 
+            ProductDaoFactory.getProductDao();
+        productDao.addProduct(p);
+        } catch(Persistence ex) {
+            ex.getMessage();
+            ex.printStackTrace();
+        }
+    }
+}
