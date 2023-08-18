@@ -802,8 +802,6 @@ Exception Handling
 Comments in Java, Naming Conventions
 
 ------
-Day 3:
-Annotation, Maven, Database interaction and Web application
 
 Recap: 
 interface and its uses.
@@ -846,7 +844,7 @@ while(iter.hasNext()) {
 }
 ```
 Set --> unique collection, not ordered, can't be re-ordered
- 
+
 Map is a data container which produces collection; it's a key/value pair
 Examples: Dictionary --> key is the word and value is meaning
 unique --> key
@@ -860,4 +858,144 @@ HashCode? --> numerical representation of Object
 * Hash based contaniers uses hashcode to find duplicates and positioning of element in container
 
 HashBased containers: HashSet, Hashtable [ legacy ], HashMap
+
+
+-----
+
+Day 3:
+Annotation, Maven, Database interaction and Web application
+
+Metadata can be in the form of XML or Annotation.
+java 1.5 introduced Annotation
+
+Annotation: Metadata
+
+1) Who uses it?
+* Compiler
+* ClassLoader
+* Runtime
+2) Where can I apply it?
+* Type --> class, interface, Enum, Annotation, Record
+* method
+* field
+* parameter
+* constructor
+
+built-in annotation --> override
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.SOURCE)
+public @interface Override {
+}
+
+RetentionPolicy.SOURCE --> who uses Source --> Compiler 
+Metadata is used by compiler and removes this metadata in .class
+
+```
+public class Base {
+    public void test() {}
+}
+
+public class Derived extends Base {
+    @Override
+    public void test() {}
+}
+```
+
+Derived.class won't have annotaion details
+
+===================
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.CLASS)
+public @interface Mobile {
+    String name();
+}
+
+@Mobile(name="Samsung")
+public class CandyCrush extends Game {
+    ///
+}
+
+@Mobile(name="iphone")
+public class CandyCrushPhone extends Game {
+    ///
+}
+
+javac CandyCrush.java ===> CandyCrush.class [ this class still has @Mobile metadata]
+
+Samsung devices contain there own classloader; these classloader can read this metadata and decide
+to allow the class to be loaded on the device or not
+
+==============
+
+Annotations  can't have state and methods, they contain only properties
+
+RUNTIME annotation <-- most of annotations used from today 
+
+We will create 2 annotations
+Table and Column
+
+```
+@Table(name="books")
+public class Book {
+    int id;
+    String title;
+    double price;
+    // constructors
+    //setters()
+
+    @Column(name="BOOK_ID", type="NUMERIC(10)")
+    public int getId() {
+        ..
+    }
+
+    @Column(name="BOOK_TITLE")
+    public String getTitle() {
+        ..
+    }
+
+     @Column(name="AMOUNT", type="NUMERIC(12,2)")
+    public double getPrice() {
+        ..
+    }
+}
+
+books
+
+BOOK_ID  BOOK_TITLE    AMOUNT
+
+```
+
+we will use Annotations to generate SQL for DDL [ create, alter, drop] and DML [insert, select, update, delete]
+
+Property
+property = x; // set property
+x = property(); // get property
+
+<?> is unknown type --> allows to read, but mutation is not allowed
+
+```
+	List<Product> products = new ArrayList<>();
+
+		products.add(new Product(53, "Wacom", 5600.00, "computer"));
+		products.add(new Product(61, "Sony Bravia", 298000.00, "tv"));
+		products.add(new Product(891, "Logitech Mouse", 890.00, "computer"));
+		products.add(new Product(4, "iPhone 14", 78000.00, "mobile"));
+		products.add(new Product(62, "Oneplus Nord", 56000.00, "mobile"));
+
+    getData(products);
+  
+    public void getData(List<?> products) {
+        products.get(0); // valid
+        products.set(3, new Product()); // fails --> ? allows read operation, but not write
+        products.add(new Product()); // fails --> ? allows read operation, but not write
+    }
+```
+
+String is immutable, use StringBuffer or StringBuilder to mutate a String.
+
+createStatement(Book.class);
+
+
 
