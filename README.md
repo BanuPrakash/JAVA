@@ -1308,3 +1308,9 @@ Save "pom.xml" --> application should update, else Project --> Maven --> Update 
 src / main / webapp folder --> static resources are created here.
 
 src/main/java --> servlets are created.
+
+Project --> Run As --> Maven build --> Goals
+jetty:run
+
+http://localhost:8080
+
