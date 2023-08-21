@@ -1437,3 +1437,9 @@ Program arguments
 
 ```
 
+Factory Method in Spring?
+1) We might need to instantiate objects of classes provided by 3rd party library which won't have any of the above mentioned "7" annotations
+Spring has to mange the instance
+
+2) Generally Spring uses default constructor for creating instances of class; sometimes we might need to pass our own values to constructor for creating instances.
+
