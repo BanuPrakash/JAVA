@@ -1226,3 +1226,85 @@ web.xml
 @WebServlet("/products")
 public class ProductServlet extends HttpServlet {
 }
+
+
+
+
+				
+
+        <dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
+		</dependency>
+
+Day 4
+
+Reacap: Database connectivity ==> JDBC [ integration API]
+
+Java <---> RDBMS
+
+java.sql package --> interfaces
+implementation classes are provided by database vendors [jar file]
+Class.forName(), DriverManager, Statement, PreparedStatement, ResultSet
+finally block ---> to release resources [ like close file, connection, socket]
+
+Task: getProduct by Id, update Statement.
+
+Web application development using Servlet technology.
+
+Web Server : which works on Request / Response based on HTTP protocol
+
+Servlet engine / web container [ Tomcat / Jetty / Netty / ..]
+these engines manages life-cycle of object
+Things what Servlet engine does:
+1) instantiate Servlets --> Singleton object
+2) instantiate HttpServletRequest and HttpServletResponse per request from client
+3) handle DI: inject HttpServletRequest and HttpServletResponse objects to HttpServlet
+4) destroys HttpServletRequest and HttpServletResponse when response is commited to client
+5) Manage Thread pool and assign one thread per client request.
+6) Once response is commited, threads are released back to the pool.
+
+
+Converting Standalone application to web application.
+
+packaging: war ==> Web archive [ only "war" files are deployable on Servlet engine]
+
+packaging can be "jar", "war", "ear", "sar" 
+
+War and jar
+
+for "jar" compiled code will be in "bin" folder
+for "war" compiled code will be in "WEB-INF/classes" folder
+"war" also contains static resources like "html", "css" and "js"
+
+1) <packaging>war</packaging>
+2) need Servlet API [ classes with "HttpServlet", "HttpServletRequest", ...]
+ <dependency>
+			<groupId>jakarta.servlet</groupId>
+			<artifactId>jakarta.servlet-api</artifactId>
+			<version>6.0.0</version>
+</dependency>
+3) We need "war" plugin
+<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.4.0</version>
+					<configuration>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
+					</configuration>
+				</plugin>
+
+4) Embedded Jetty Server instead of installing a Servlet engine explicitly
+<!-- embedded JETTY server -->
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>11.0.15</version>
+				</plugin>
+
+Save "pom.xml" --> application should update, else Project --> Maven --> Update Project --> Force Update
+
+src / main / webapp folder --> static resources are created here.
+
+src/main/java --> servlets are created.
