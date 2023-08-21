@@ -1443,3 +1443,84 @@ Spring has to mange the instance
 
 2) Generally Spring uses default constructor for creating instances of class; sometimes we might need to pass our own values to constructor for creating instances.
 
+=============
+JPA and ORM
+
+ORM --> Object Relational Mapping [ Java Object <----> RDBMS table, Java Fields <---> table columns]
+ORM Frameworks:
+1) Hibernate
+2) Toplink
+3) KODO
+4) JDO
+5) openJPA
+6) EclipseLink
+...
+
+ORM Frameworks help in DDL and DML operations based on Mapping
+
+JPA --> Java Persistence API is a specification for ORM [ think interfaces for ORM]
+
+EntityManager em;
+
+public void addProduct(Product p) {
+    em.persist(p);
+}
+
+public List<Product> getProducts() {
+    Query query = em.createQuery(Product.class);
+    return query.getResultResult();
+}
+
+===
+
+PersistenceContext: Environment where entities [@Entity] are managed [ sync with DB]
+EntityManager is a class which manages PersistenceContext environment.
+EntityManager uses db connection from db pool [ DataSource] and uses provided JPAVendor[ Hiberate/ Toplink/ OpenJPA]
+
+===
+
+Spring Data Jpa ==> Simplifies using ORM;
+Spring Data Jpa which comes with Spring Boot; highly opinated
+* Creates DataSource --> Pool of database connection using HikariCP using configurations persent in application.properties [ DRIVER, URL, USERNAME, PWD]
+* uses Hibernate by default as ORM --> JPAVendor
+* just create interface; implementation classes are created by Spring Data JPA
+Example:
+```
+public interface ProductDao extends JpaRepository<Product, Integer> {
+}
+
+public interface CustomerDao extends JpaRepository<Customer, String> {
+}
+```
+No need for @Repository class if JPA is used with Spring Data Jpa
+Basic CRUD operations are created by class which inturn implements this interface.
+
+New Spring boot starter project:
+Screen 1:
+groupId
+artifactId
+version
+package
+
+Next>>
+Screen 2:
+lombok, MySQL Driver, Spring Data Jpa
+
+-----
+
+Setup database details in application.properties [ src/main/resources]
+
+to learn about which key to use --> look into global application.properties of spring boot
+
+https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+
+1) ORM generates SQL, we need to tell ORM to generate SQL for MySQL
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
+2) spring.jpa.hibernate.ddl-auto=update
+update --> Map java class to existing table or if table is not present create it, if required alter
+create -> drop table on application exist, create it when application starts
+validate --> check if classes matches with existing table, if doesn't match application fail
+
+3) spring.jpa.show-sql=true
+logging SQLs generated
