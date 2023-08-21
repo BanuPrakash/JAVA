@@ -18,7 +18,7 @@ public class DemoApplication {
 			System.out.println(name);
 		}
 		
-		Employee e = new Employee(); 
+		Employee e = new Employee(); // not a bean
 		AppService service = ctx.getBean("appService", AppService.class);
 		service.insert(e);
 	}

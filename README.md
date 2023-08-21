@@ -1390,3 +1390,49 @@ SpringApplication.run() starts the Spring Container
     this takes care creating "DataSource", "EmbeddedTomcatContainer", "Jackson", ... based on type of project
 3) @Configuration
 
+-----------
+
+Bean: -> Any object which is managed by spring container is a bean.
+employeeDaoMongoImpl
+
+
+Field employeeDao in com.adobe.prj.service.AppService required a single bean, but 2 were found:
+	- employeeDaoJdbcImpl
+	- employeeDaoMongoImpl
+
+Solution 1:
+1) @Primary
+@Primary
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+
+2) @Qualifier
+@Repository
+public class EmployeeDaoMongoImpl implements EmployeeDao {
+
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+
+@Service
+public class AppService {
+	@Autowired
+	@Qualifier("employeeDaoJdbcImpl")
+	private EmployeeDao employeeDao; // interface
+
+3) Based on Profile
+
+@Profile("prod")
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+
+
+@Profile("dev")
+@Repository
+public class EmployeeDaoMongoImpl implements EmployeeDao {
+
+Run As --> Run configuration --> Arguments
+Program arguments
+--spring.profiles.active=prod
+
+
+
