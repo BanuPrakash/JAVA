@@ -1315,3 +1315,7 @@ jetty:run
 
 http://localhost:8080
 
+
+POST request 
+and Spring and JPA
+

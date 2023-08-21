@@ -1338,3 +1338,29 @@ Caused by: java.lang.NoClassDefFoundError: Could not initialize class org.apache
 2023-08-21 10:36:55,539 [Worker-45: Launching database] INFO  o.eclipse.m2e.core.internal.Bundles - 	Entry: /Applications/Eclipse.app/Contents/Eclipse/plugins/javax.annotation_1.3.5.v20221112-0806.jar
 2023-08-21 10:36:55,541 [Worker-45: Launching database] INFO  o.e.m.i.launch.MavenLaunchDelegate - Run build in "/Users/banuprakash/Desktop/Java Workspaces/ADOBE/AUG23/JAVA/database":
 2023-08-21 10:36:55,542 [Worker-45: Launching database] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B -Dstyle.color=always jetty:run
+2023-08-21 11:25:13,086 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2023-08-21 11:25:13,128 [Worker-56: Launching database] INFO  o.e.m.i.launch.MavenLaunchDelegate - Run build in "/Users/banuprakash/Desktop/Java Workspaces/ADOBE/AUG23/JAVA/database":
+2023-08-21 11:25:13,128 [Worker-56: Launching database] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B -Dstyle.color=always jetty:run
+2023-08-21 11:25:45,400 [Worker-56: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-08-21 11:25:45,402 [Worker-56: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-08-21 11:25:45,403 [Worker-56: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-08-21 11:25:45,404 [Worker-56: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-08-21 11:27:36,195 [Worker-57: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-08-21 11:27:36,196 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-08-21 11:27:36,197 [Worker-57: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-08-21 11:27:36,197 [Worker-57: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-08-21 11:31:33,054 [Worker-53: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-08-21 11:31:33,054 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2023-08-21 11:31:33,055 [Worker-53: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-08-21 11:31:33,055 [Worker-53: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-08-21 11:31:34,064 [Worker-55: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-08-21 11:31:34,065 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2023-08-21 11:31:34,065 [Worker-55: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-08-21 11:31:34,065 [Worker-55: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-08-21 11:31:57,272 [Worker-48: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-08-21 11:31:57,273 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2023-08-21 11:31:57,273 [Worker-48: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-08-21 11:31:57,274 [Worker-48: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-08-21 11:32:06,071 [main] INFO  o.e.m2e.actions.ExecutePomAction - Using existing launch configuration
+2023-08-21 11:32:06,106 [Worker-56: Launching database] INFO  o.e.m.i.launch.MavenLaunchDelegate - Run build in "/Users/banuprakash/Desktop/Java Workspaces/ADOBE/AUG23/JAVA/database":
+2023-08-21 11:32:06,106 [Worker-56: Launching database] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B -Dstyle.color=always jetty:run
