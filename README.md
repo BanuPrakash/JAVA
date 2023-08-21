@@ -1524,3 +1524,10 @@ validate --> check if classes matches with existing table, if doesn't match appl
 
 3) spring.jpa.show-sql=true
 logging SQLs generated
+
+---
+
+Only classes which has @Entity is managed by ORM/JPA
+@Id --> to mark as PRIMARY KEY
+@GeneratedValue(strategy = GenerationType.IDENTITY) ---> AUTO INCREMENT
+
