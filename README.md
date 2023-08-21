@@ -1391,6 +1391,7 @@ SpringApplication.run() starts the Spring Container
 3) @Configuration
 
 -----------
+```
 
 Bean: -> Any object which is managed by spring container is a bean.
 employeeDaoMongoImpl
@@ -1434,5 +1435,5 @@ Run As --> Run configuration --> Arguments
 Program arguments
 --spring.profiles.active=prod
 
-
+```
 
