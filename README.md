@@ -1315,7 +1315,78 @@ jetty:run
 
 http://localhost:8080
 
+==============================
 
-POST request 
-and Spring and JPA
+Spring Framework
+Lightweight Container with Dependency Injection capabilities for building enterprise application.
+
+Bean: any object managed by spring container --> bean
+
+* Life-cycle management of beans
+* Wires dependencies using Inversion Of Control
+
+UI --> service --> DAO --> Database
+
+Advantages: Loose Coupling and easy to test
+
+Spring Framework instantiates classes which has one of these annotations:
+1) @Component
+2) @Repository
+3) @Service
+4) @Configuration
+5) @Controller
+6) @RestController
+7) @ControllerAdvice
+
+
+public interface EmployeeDao {
+    void addEmployee(Employee e);
+}
+
+@Repository
+public class EmployeeDaoJdbcImpl implements EmployeeDao {
+     public void addEmployee(Employee e) {...}
+}
+Spring creates instance of EmployeeDaoJdbcImpl as "employeeDaoJdbcImpl"
+
+@Service
+public class AppService {
+    @Autowired
+    private EmployeeDao empDao; // interface
+}
+Spring creates instance of AppService as "appService"
+employeeDaoJdbcImpl is wired to appService instance
+
+@Controller
+public class EmployeeController {
+     @Autowired
+    private AppService service; 
+}
+Spring creates instance of "EmployeeController" as "employeeController"
+appService is wired employeeController instance
+
+Eclipse --> Help --> Eclipse Martket Place --> Search "STS" --> GO --> install Spring Tools 4
+
+Spring Boot Framework on top of Spring Framework
+
+Spring Boot is highly opiniated Framework.
+1) If we choose to connect to RDBMS, Spring Boot provides DataSource out of the box --> Pool of database connection
+
+Use DataSource instead of DriverManager.getConnection() in enterprise application
+
+Latency in opening and closing connection if  DriverManager.getConnection() is used
+
+2) If we choose to build web application --> Tomcat Embedded WebServer is configured out of the box.
+
+3) RESTful: Java <--> JSON library [Jackson] is provided out of the  box
+
+--------
+SpringApplication.run() starts the Spring Container
+
+@SpringBootApplication is made of 3 features:
+1) @ComponentScan
+    scans for above mentioned 7 annotations and creates instance of classes
+2) @EnableAutoConfiguration
+    this takes care creating "DataSource", "EmbeddedTomcatContainer", "Jackson", ... based on type of project
+3) @Configuration
 
