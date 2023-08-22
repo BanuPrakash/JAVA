@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,7 +23,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="orders")
+@Table(name = "orders")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -30,18 +32,18 @@ public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int oid;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name="order_date")
-	private Date orderDate;
-	
-	private double total;
-	
+	@Column(name = "order_date")
+	private Date orderDate = new Date(); // system date
+
+	private double total; // computed
+
 	@ManyToOne
-	@JoinColumn(name="customer_fk")
+	@JoinColumn(name = "customer_fk")
 	private Customer customer;
-	
-	@OneToMany
-	@JoinColumn(name="order_fk")
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "order_fk")
 	private List<LineItem> items = new ArrayList<>();
 }

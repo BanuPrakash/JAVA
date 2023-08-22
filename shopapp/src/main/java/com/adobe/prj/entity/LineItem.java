@@ -14,7 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="products")
+@Table(name="line_items")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -31,5 +31,5 @@ public class LineItem {
 	
 	private int qty;
 	
-	private double amount;
+	private double amount; // compute
 }

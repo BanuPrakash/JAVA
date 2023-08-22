@@ -1606,7 +1606,130 @@ An example may be an order and its line-items, these will be separate objects, b
 @ManyToOne introduces FK in owning table
 @OneToMany introduces FK in child table
 
-Resume @ 11:30
+@Temporal
+
+java.util.Date ====> How to store in database table 
+
+new Date();
+
+@Temporal(DATE) ==> in database ==> 2023-8-23
+@Temporal(TIME) ==> in database ==> 11:26:00
+@Temporal(TIMESTAMP) ==> in database ==> 2023-8-23 11:26:00
+
+------
+
+Primary Key:
+1) we need to programatically assign id from application
+@Id
+int id;
+
+2) Database uses AUTO INCREMENT for id, no need to set id in application
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+int id;
+
+=======
+```
+Without Cascade:
+1 order has 4 items;
+@OneToMany
+@JoinColumn(name="order_fk")
+private List<LineItem> items = new ArrayList<>();
+
+DAO operations:
+orderDao.save(order);
+itemDao.save(i1);
+itemDao.save(i2);
+itemDao.save(i3);
+itemDao.save(i4);
+
+Delete:
+orderDao.delete(order);
+itemDao.delete(i1);
+itemDao.delete(i2);
+itemDao.delete(i3);
+itemDao.delete(i4);
+
+With Cascade:
+	
+@OneToMany(cascade = CascadeType.ALL)
+@JoinColumn(name="order_fk")
+private List<LineItem> items = new ArrayList<>();
+
+1 order has 10 items;
+
+orderDao.save(order); --> takes care of saving order and its items in line_items table
+orderDao.delete(order); --> takes care of deleting order and its items
+
+With this we might not require LineItemDao.java interface
+```
+
+EAGER and LAZY Fetching
+```
+1)
+one-to-many is LAZY fetching by default;
+
+orderDao.findAll();
+select * from orders;
+
+i get orders with id 5,11,83,12,6
+
+itemDao.findOrderByOrderId(5);
+itemDao.findOrderByOrderId(11);
+itemDao.findOrderByOrderId(83);
+itemDao.findOrderByOrderId(12);
+itemDao.findOrderByOrderId(6);
+
+2) 
+with EAGER fetching
+@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+@JoinColumn(name="order_fk")
+private List<LineItem> items = new ArrayList<>();
+
+orderDao.findAll();
+select * from orders;
+ORM framework will fetch all items belonging to orders implicitly
+
+```
+Many-to-one by default is EAGER fetching
+
+orderDao.findAll();
+select * from orders; also gets select * from customers where customer_fk = ?
+
+=============
+
+Transactional 
+1) for making atomic operations
+
+below code, everything commits or if any action throws Exception, rollback all operations
+@Transactional
+public void doTask() {
+
+}
+
+2) any changes done to enitity in @Transactional method will be flushed to database [ sync],
+this feature is called as Dirty Checking
+
+Entity become dirty --> update database
+```
+@Transactional
+public void updateProduct(int id, double price) {
+    Optional<Product> opt = productDao.findById(id);
+    if(opt.isPresent()) {
+        Product p = opt.get();
+        p.setPrice(price); // here product become dirty --> ORM issues UPDATE SQL
+    }
+}
+```
+JSON data from client
+
+{
+    customer:{"email": "sam@adobe.com"},
+    "items": [
+        {"product": {id:3}, qty: 1},
+        {"product": {id:1}, qty: 2}
+    ]
+}
 
 
 
