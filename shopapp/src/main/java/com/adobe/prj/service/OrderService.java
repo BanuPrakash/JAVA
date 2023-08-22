@@ -28,6 +28,10 @@ public class OrderService {
 	@Autowired
 	private OrderDao orderDao;
 	
+	public void updateProduct(int id, Product p) {
+		productDao.updateProductPrice(id, p.getPrice());
+	}
+	
 	public List<OrderReport> getReport() {
 		return orderDao.getReport();
 	}
