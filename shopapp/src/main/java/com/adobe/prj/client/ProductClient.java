@@ -23,14 +23,14 @@ public class ProductClient implements CommandLineRunner {
 	}
 		
 	private void productsByPrice() {
-		List<Product> products = service.byRange(5000, 50_000);
+		List<Product> products = service.byRange(5000, 50000);
 		for(Product p : products) {
 			System.out.println(p);
 		}
 	}
 
 	private void addProduct() {
-		Product p = Product.builder().name("Macbook Pro").price(220000.00).quantity(100).build();
+		Product p = Product.builder().name("Macbook Pro").price(2_20_000.00).quantity(100).build();
 		service.addProduct(p);
 		System.out.println("Product added successfully!!!");
 	}

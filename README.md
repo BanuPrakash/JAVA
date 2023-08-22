@@ -1582,8 +1582,29 @@ JP-QL --> Java Persistence API Query Language
 2) from Customer where firstName = 'Raj'
 3) select firstName, lastName from Customer
 
+=====
+
+Entity Association Mapping:
+1) one-to-many
+2) many-to-one
+3) one-to-one
+4) many-to-many
+
+customer --> Order [ one-to-many] --> one customer can place many orders
+
+Order --> Customer [ many-to-one] --> many orders are placed by a customer
+
+order --> LineItem [ one to many] -> one order can have many items
+LineItem --> Product [ many to one] --> Many lineitems can refer to a product
+
+https://martinfowler.com/tags/domain%20driven%20design.html
+
+A DDD aggregate is a cluster of domain objects that can be treated as a single unit. 
+An example may be an order and its line-items, these will be separate objects, but it's useful to treat the order (together with its line items) as a single aggregate.
 
 
+@ManyToOne introduces FK in owning table
+@OneToMany introduces FK in child table
 
 
 
