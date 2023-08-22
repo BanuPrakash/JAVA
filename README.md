@@ -1731,6 +1731,123 @@ JSON data from client
     ]
 }
 
+========
+
+Vehicle Rental application:
+Entities:
+1) Vehicle
+2) Customer
+3) Rental
+
+Entities are available.
+```
+Task:
+1) Add Customer [ do it from mysql command prompt]
+2) Add Vehicle [ do it from mysql command prompt ]
+3) Application
+3.1) Rent a Vehicle --> DAO save() method
+    use system_date for rental_start_Date
+    rentals
+    id   rental_start_date  rental_end_date customer_fk         rental_amount
+    23   22-AUG-2023        NULL            peter@adobe.com     0.0
+
+3.2) Return a vehicle --> use dirty checking to update
+
+    user passes "rental" id for returning a vehicle
+    pass date for returning the vehicle [24-AUG-2023]
+    
+    calculate rent based on number of days and cost/day of vehicle
+
+    rentals
+    id   rental_start_date  rental_end_date customer_fk             rental_amount
+    23   22-AUG-2023        24-AUG-2023            peter@adobe.com    7997.00
+
+```
+
+Task 2:
+Ticket Tracking application:
+Assumptions "employees" data exists in database
+
+tickets
+ticket_id   raised_by   issue  raised_date  resolved_by  resolve_text  resolved_date
+
+```
+1) Raise a Ticket
+
+tickets
+ticket_id   raised_by           issue           raised_date  resolved_by  resolve_text  resolved_date
+423         harry@adobe.com     Docker crash    19-AUG-2022  NULL         NULL        NULL
+
+2) Resolve the ticket
 
 
+tickets
+ticket_id   raised_by           issue           raised_date  resolved_by    resolve_text  resolved_date
+423         harry@adobe.com     Docker crash    19-AUG-2022  kim@adobe.com   reinstall        20-AUG-23
 
+```
+
+Task3:
+Meeting Room booking application -> decide entites and association
+
+==============================================================
+
+RESTful Web Services
+
+Representational State Transfer
+
+Resource: what resides on server [ database / file / printer/ ...]
+
+State of Resource: current state of resource
+
+Representation: state of resource can be served in various formats [ XML/JSON/CSV/..]
+
+REST uses URL to identify resource and HTTP methods for actions [CRUD] operations
+
+POST --> CREATE a record
+GET --> READ 
+PUT/PATCH --> UPDATE
+DELETE --> DELETE
+
+Example:
+1)
+GET http://localhost:8080/api/products
+to get all products
+
+2) 
+GET http://localhost:8080/api/products/4
+use PathParameter [/] to get based on "ID" or sub-resource
+get a product whose id is "4"
+
+3) 
+GET http://localhost:8080/api/products?category=mobile
+Use QueryParameter [ ? ] for filtered data [ sub-set]
+get all mobile products
+
+4)
+POST http://localhost:8080/api/products
+payload from client contains a new product to be added to "products" resource
+
+5) AVOID this --> BAD restful call
+DELETE http://localhost:8080/api/products/3
+delete a product whose id is "3"
+
+6)
+PUT http://localhost:8080/api/products/2
+payload from client contains a new product data to be modified in "products" resource with an id of "2"
+
+
+POST and PUT contains payload --> Not Safe Methods
+GET and DELETE --> No payload --> Safe Methods
+
+====
+
+RESTful uses HttpHeaders to identify what representation to be sent to client and type of payload sent from client
+
+1) Client needs resource in "json" format
+Accept: application/json
+
+2) ContentType: text/xml
+client is sending xml data to server
+
+=========
