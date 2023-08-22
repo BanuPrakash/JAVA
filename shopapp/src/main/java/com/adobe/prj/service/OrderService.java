@@ -1,5 +1,7 @@
 package com.adobe.prj.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +29,12 @@ public class OrderService {
 	
 	@Autowired
 	private OrderDao orderDao;
+	
+	public List<Order> getOrderForDate(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // format understood by mySQL
+		String dateStr = sdf.format(date);
+		return orderDao.getOrdersForDate(dateStr);
+	}
 	
 	@Transactional
 	public void updateProduct(int id, Product p) {
