@@ -28,6 +28,7 @@ public class OrderService {
 	@Autowired
 	private OrderDao orderDao;
 	
+	@Transactional
 	public void updateProduct(int id, Product p) {
 		productDao.updateProductPrice(id, p.getPrice());
 	}
