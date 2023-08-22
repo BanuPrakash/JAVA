@@ -18,7 +18,7 @@ import com.adobe.prj.service.OrderService;
 
 @RestController
 @RequestMapping("api/products")
-public class ProductServlet {
+public class ProductController {
 	@Autowired
 	private OrderService service;
 
