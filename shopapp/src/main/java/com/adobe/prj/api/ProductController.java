@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,10 +24,16 @@ public class ProductController {
 	private OrderService service;
 
 	// http://localhost:8080/api/products
+	// http://localhost:8080/api/products?low=500&high=5000
 	// returned List<Product> is given to HttpMessageConverter based on Accept header
 	@GetMapping
-	public List<Product> getProducts() {
-		return service.getProducts();
+	public List<Product> getProducts(@RequestParam(name = "low", defaultValue = "0.0") double low,
+			@RequestParam(name = "high", defaultValue = "0.0") double high) {
+		if(low == 0.0 && high == 0.0) {
+			return service.getProducts();
+		} else {
+			return service.byRange(low, high);
+		}
 	}
 	
 	// http://localhost:8080/api/products/3

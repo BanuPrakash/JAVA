@@ -1872,4 +1872,32 @@ Accept:application/json
 
 Download POSTMAN
 
+Task:
+
+CustomerController
+
+GET all Customers
+Get by email
+add customer
+
+===============
+
+
+Placing Order thro POSTMAN
+POST http://localhost:8080/api/orders
+{
+    "customer":{"email": "george@adobe.com"},
+    "items": [
+        {"product": {"id":4}, "qty": 1},
+        {"product": {"id":2}, "qty": 2}
+    ]
+}
+
+"orderDate": "2023-08-22T06:53:37.476+00:00",
+
+@JsonFormat(pattern = "dd/MMM/yyyy")
+Date orderDate;
+
+"orderDate": "22/Aug/2023",
+
 
