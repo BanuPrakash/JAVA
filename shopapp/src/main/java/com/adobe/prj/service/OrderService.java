@@ -27,6 +27,10 @@ public class OrderService {
 	@Autowired
 	private OrderDao orderDao;
 	
+	public List<Order> getOrders() {
+		return orderDao.findAll();
+	}
+	
 	/*
 	 {
     	customer:{"email": "sam@adobe.com"},

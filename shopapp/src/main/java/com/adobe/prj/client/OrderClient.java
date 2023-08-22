@@ -20,13 +20,26 @@ public class OrderClient implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		checkout();	
+		//checkout();	
+		listOrders();
+	}
+
+	private void listOrders() {
+		List<Order> orders = service.getOrders();
+		for(Order o : orders) {
+			System.out.println(o.getCustomer().getEmail() + ", " + o.getOrderDate() + ", " + o.getTotal());
+			List<LineItem> items = o.getItems();
+			for(LineItem item : items) {
+				System.out.println(item.getProduct().getName() + ", " + item.getQty() + ", " + item.getAmount());
+			}
+			System.out.println("###########");
+		}
 	}
 
 	private void checkout() {
 		Order order = new Order();
 		LineItem item1 = LineItem.builder()
-				.product(Product.builder().id(3).build())
+				.product(Product.builder().id(2).build())
 				.qty(1).build();
 		
 		LineItem item2 = LineItem.builder()
