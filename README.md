@@ -1759,8 +1759,8 @@ Task:
     calculate rent based on number of days and cost/day of vehicle
 
     rentals
-    id   rental_start_date  rental_end_date customer_fk             rental_amount
-    23   22-AUG-2023        24-AUG-2023            peter@adobe.com    7997.00
+    id   rental_start_date  rental_end_date         customer_fk             rental_amount   vehicle_fk
+    23   22-AUG-2023        24-AUG-2023            peter@adobe.com          7997.00         UP12EA2341
 
 ```
 
@@ -1851,3 +1851,25 @@ Accept: application/json
 client is sending xml data to server
 
 =========
+
+Libraries for Java <--> JSON:
+1) jackson [default]
+2) GSON
+3) jettison
+4) Moxy
+
+
+POST http://localhost:8080/api/products
+ContentType:application/json
+Accept:application/json
+
+{
+    "name": "Panasonic Tv",
+    "price": 89000.00,
+    "quantity": 500
+}
+
+
+
+
+
