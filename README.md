@@ -1606,6 +1606,8 @@ An example may be an order and its line-items, these will be separate objects, b
 @ManyToOne introduces FK in owning table
 @OneToMany introduces FK in child table
 
+Resume @ 11:30
+
 
 
 
