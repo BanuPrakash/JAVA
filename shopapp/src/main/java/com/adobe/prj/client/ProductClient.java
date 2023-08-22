@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import com.adobe.prj.entity.Product;
 import com.adobe.prj.service.OrderService;
 
-@Component
+//@Component
 public class ProductClient implements CommandLineRunner {
 	@Autowired
 	private OrderService service;
