@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import com.adobe.prj.dto.OrderReport;
 import com.adobe.prj.entity.Customer;
 import com.adobe.prj.entity.LineItem;
 import com.adobe.prj.entity.Order;
@@ -21,7 +22,15 @@ public class OrderClient implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		//checkout();	
-		listOrders();
+		//listOrders();
+		printReport();
+	}
+
+	private void printReport() {
+		List<OrderReport> reports = service.getReport();
+		for(OrderReport report : reports) {
+			System.out.println(report);
+		}
 	}
 
 	private void listOrders() {

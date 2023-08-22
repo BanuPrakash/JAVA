@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.adobe.prj.dao.CustomerDao;
 import com.adobe.prj.dao.OrderDao;
 import com.adobe.prj.dao.ProductDao;
+import com.adobe.prj.dto.OrderReport;
 import com.adobe.prj.entity.Customer;
 import com.adobe.prj.entity.LineItem;
 import com.adobe.prj.entity.Order;
@@ -26,6 +27,10 @@ public class OrderService {
 	
 	@Autowired
 	private OrderDao orderDao;
+	
+	public List<OrderReport> getReport() {
+		return orderDao.getReport();
+	}
 	
 	public List<Order> getOrders() {
 		return orderDao.findAll();
