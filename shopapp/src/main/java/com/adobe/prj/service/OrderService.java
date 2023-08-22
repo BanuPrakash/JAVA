@@ -19,6 +19,10 @@ public class OrderService {
 	@Autowired
 	private CustomerDao customerDao;
 	
+	public List<Product> byRange(double low, double high) {
+		return productDao.getByRange(low, high);
+	}
+	
 	public List<Product> getProducts() {
 		return productDao.findAll();
 	}

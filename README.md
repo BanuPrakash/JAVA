@@ -1531,4 +1531,60 @@ Only classes which has @Entity is managed by ORM/JPA
 @Id --> to mark as PRIMARY KEY
 @GeneratedValue(strategy = GenerationType.IDENTITY) ---> AUTO INCREMENT
 
+Task:
+CustomerClient
+addCustomer() and listCustomer()
+
+
+http://localhost:8080/api/orders/byDate?orderDate=2023-06-22
+
+application.properties
+spring.mvc.format.date=yyyy-MM-dd
+
+@GetMapping("/byDate")
+public List<Order> getByDate(@RequestParam("orderDate")  Date date) {
+		log.info("order date " + date );
+		return orderService.getOrder(date);
+}
+@DateTimeFormat(pattern = "dd-MM-YYYY") Date date
+===============
+Custom Queries, RESTful Web Service
+
+
+
+Recap:
+
+Spring Container and 7 annotations at class-level
+
+@Autowired, @Qualifier, @Primary, @Profile
+
+@Bean for a factory method
+
+ORM and JPA
+@Entity, @Id --> compulsory annotation
+
+@Table, @Column, @GeneratedValue
+
+JpaRepository --> contains most of the CRUD methods
+
+Day 5:
+
+How to write custom queries?
+
+SQL
+
+1) select * from customers;
+2) select * from customers where first_name = 'Raj'
+3) select first_name, last_name from customers;
+
+JP-QL --> Java Persistence API Query Language
+1) from Customer
+2) from Customer where firstName = 'Raj'
+3) select firstName, lastName from Customer
+
+
+
+
+
+
 

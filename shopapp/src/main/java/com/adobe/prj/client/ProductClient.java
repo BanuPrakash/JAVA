@@ -16,11 +16,19 @@ public class ProductClient implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// code gets executed as soon as Spring container is created
-		addProduct();
-		listProducts();
-		getProductById();
+		//addProduct();
+		//listProducts();
+		//getProductById();
+		productsByPrice();
 	}
-	
+		
+	private void productsByPrice() {
+		List<Product> products = service.byRange(5000, 50_000);
+		for(Product p : products) {
+			System.out.println(p);
+		}
+	}
+
 	private void addProduct() {
 		Product p = Product.builder().name("Macbook Pro").price(220000.00).quantity(100).build();
 		service.addProduct(p);
