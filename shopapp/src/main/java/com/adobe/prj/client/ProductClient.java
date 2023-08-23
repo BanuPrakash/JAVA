@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.adobe.prj.entity.Product;
+import com.adobe.prj.service.EntityNotFoundException;
 import com.adobe.prj.service.OrderService;
 
 //@Component
@@ -42,7 +43,7 @@ public class ProductClient implements CommandLineRunner {
 		}
 	}
 	
-	private void getProductById() {
+	private void getProductById() throws EntityNotFoundException {
 		System.out.println("#####");
 			Product p = service.getProductById(2);
 			System.out.println(p);
