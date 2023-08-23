@@ -19,7 +19,7 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtService {
 	@Value("${token.signing.key}")
-	private String jwtSigningKey;
+	private String jwtSigningKey; // from application.properties
 
 	public String extractUserName(String token) {
 		return extractClaim(token, Claims::getSubject);
