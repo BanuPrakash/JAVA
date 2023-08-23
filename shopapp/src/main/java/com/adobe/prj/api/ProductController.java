@@ -19,6 +19,7 @@ import com.adobe.prj.entity.Product;
 import com.adobe.prj.service.EntityNotFoundException;
 import com.adobe.prj.service.OrderService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 
 @RestController
@@ -41,6 +42,8 @@ public class ProductController {
 		}
 	}
 	
+	
+	@Operation(summary = "Gets product by ID", description = "Product must exist")
 	// http://localhost:8080/api/products/3
 	@GetMapping("/{id}")
 	public Product getProduct(@PathVariable("id") int id) throws EntityNotFoundException {

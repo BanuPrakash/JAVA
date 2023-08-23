@@ -2193,3 +2193,56 @@ Validation failed for argument [0] in public com.adobe.prj.entity.Product com.ad
 
 [Field error in object 'product' on field 'quantity': rejected value [2]; codes [Min.product.quantity,Min.quantity,Min.int,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.quantity,quantity]; arguments []; default message [quantity],10]; default message [Quantity entered 2 should be more than 10]] ]
 ```
+
+RESTful API Documentation
+* How will client [React / Angular / FLutter or other applications] come to know about end-points available?
+* Which Http methods are supported
+* What is the payload?
+
+RAML and OpenAPI [ Swagger ]
+
+yml --> YAML
+```
+/orders:
+  displayName: Orders
+  get:
+    is: [ assets.paging ]
+    (monitoringInterval): 30
+    description: Lists all orders of a specific user
+    queryParameters:
+      userId:
+        type: string
+        description: use to query all orders of a user
+  post:
+  /{orderId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: assets.Order
+            application/xml:
+              type: !include schemas/order.xsd
+```
+
+The OpenAPI Specification is a specification language for HTTP APIs that provides a standardized means to define your API to others.
+
+Scan classes with @Controller and @RestController and generated documentation.
+
+@Controller ===> Server Side Rendering [ look into Servlet example in database project]
+
+@RestController ==> sending JSON / XML ==> Client side rendering
+
+<!-- https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-ui -->
+<dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>2.2.0</version>
+</dependency>
+
+http://localhost:8080/v3/api-docs ==> use this JSON to create custom Documentation Page using React/ Angular/ vue /... / Flutter
+
+http://localhost:8080/swagger-ui/index.html#/
+
+https://www.baeldung.com/swagger-operation-vs-apiresponse
+
