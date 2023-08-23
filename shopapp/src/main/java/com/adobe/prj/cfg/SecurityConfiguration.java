@@ -36,7 +36,7 @@ public class SecurityConfiguration {
 						.requestMatchers("/swagger-ui/index.html").permitAll()
 						.requestMatchers("/swagger-ui/swagger-initializer.js").permitAll()
 						.requestMatchers("/v3/**").permitAll()
-						.requestMatchers("/api/orders/**").hasAnyRole("ADMIN")
+//						.requestMatchers("/api/orders/**").hasAnyRole("ADMIN")
 						.anyRequest().authenticated())
 				.sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authenticationProvider(authenticationProvider())

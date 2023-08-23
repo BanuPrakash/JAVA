@@ -2298,3 +2298,27 @@ HttpHeader
 Authorization:Bearer <<token>>
 
 
+Files:
+DTO:
+JwtAuthenticationResponse,SigninRequest, SignUpRequest
+
+Service:
+AuthenticationService, JwtService
+
+cfg:
+JwtAuthenticationFilter, SecurityConfiguration
+
+api
+AuthenticationController
+
+pom.xml --> jsonapi and security
+
+=========
+
+UsernamePasswordAuthenticationFilter
+
+attemptAuthentication(...)
+
+
+
+
