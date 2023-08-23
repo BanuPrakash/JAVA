@@ -2149,3 +2149,47 @@ mid   aid   role
 ```
 =========================================
 
+Valdiation:
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+
+```
+public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	
+	@NotBlank(message = "Name is required!!!")
+	private String name;
+	
+	@Min(message="Price entered ${validatedValue} should be more than {value}", value = 0)
+	private double price;
+
+	@Min(message="Quantity entered ${validatedValue} should be more than {value}", value = 10)
+	private int quantity;
+}
+
+@RestController
+@RequestMapping("api/products")
+@Validated
+public class ProductController {
+    @PostMapping
+	@ResponseStatus(code = HttpStatus.CREATED)
+	public Product addProduct(@RequestBody @Valid Product p) {
+		return service.addProduct(p);
+	}
+
+```
+
+MethodArgumentNotValidException: 
+```
+Validation failed for argument [0] in public com.adobe.prj.entity.Product com.adobe.prj.api.ProductController.addProduct(com.adobe.prj.entity.Product) with 3 errors: 
+
+[Field error in object 'product' on field 'price': rejected value [-120000.0]; codes [Min.product.price,Min.price,Min.double,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.price,price]; arguments []; default message [price],0]; default message [Price entered -120000.0 should be more than 0]] 
+
+[Field error in object 'product' on field 'name': rejected value []; codes [NotBlank.product.name,NotBlank.name,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.name,name]; arguments []; default message [name]]; default message [Name is required!!!]] 
+
+[Field error in object 'product' on field 'quantity': rejected value [2]; codes [Min.product.quantity,Min.quantity,Min.int,Min]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [product.quantity,quantity]; arguments []; default message [quantity],10]; default message [Quantity entered 2 should be more than 10]] ]
+```
