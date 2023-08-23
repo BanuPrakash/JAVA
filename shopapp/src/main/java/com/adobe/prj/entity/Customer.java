@@ -1,8 +1,12 @@
 package com.adobe.prj.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,4 +29,7 @@ public class Customer {
 	
 	@Column(name="last_name")
 	private String lastName;
+	
+//	@OneToMany(mappedBy = "customer")
+//	private List<Order> orders = new ArrayList<>();
 }
