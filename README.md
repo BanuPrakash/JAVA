@@ -2294,6 +2294,7 @@ OpenSSL / Keytool
 
 ==========
 
-
+HttpHeader
+Authorization:Bearer <<token>>
 
 
