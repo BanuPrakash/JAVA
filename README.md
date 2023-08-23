@@ -2254,16 +2254,45 @@ Security
 			<artifactId>spring-boot-starter-security</artifactId>
 </dependency>
 
-AuthenticationManager
+RESTful Web services has to be Stateless
+JSESSIONID is not apt for RESTful Web Services
+Solution: TOKEN based authorization
 
-AuthenticationProvider
+Authentication and Authorization
 
-SecurityContext
+opaque token and JWT token
 
-JSESSIONID
-KA52CRRE11
+JWT Token
+JSON Web Tokens
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c
 
+HEADER:ALGORITHM & TOKEN TYPE
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
 
+PAYLOAD:DATA
+{
+    "subject": "banu@gmail.com",
+    "roles": "ADMIN", "MANAGER", "GUEST", // Authorities
+    "iat": 35343552, // issued at
+    "exp": 44555523, // expire
+    "iss": "http://security.amazon.com/iam" // issuer
+}
+
+VERIFY SIGNATURE
+HMACSHA256(
+  base64UrlEncode(header) + "." +
+  base64UrlEncode(payload),
+  "mytopsecretsaltkey", --> String key, prefer using PRIVATE key and Public KEY
+)
+
+Private Key --> to generate Token --> Used by Authorization Server
+Public Key --> to verify Token --> used by Resource Server
+OpenSSL / Keytool
+
+==========
 
 
 
