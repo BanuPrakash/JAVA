@@ -1903,3 +1903,247 @@ Date orderDate;
 
 Task 1, 2 and 3 --> RESTful Web Services.
 
+============
+
+Exception handling in RESTful Web Services
+Input validation
+Testing
+Security
+
+
+Day 6
+-----
+
+Recap:
+
+JPA association Mapping
+1) @OneToMany
+2) @ManyToOne
+3) @JoinColumn introduces Foreign key
+a) @ManytoOne FK is introduced in owning table
+
+public class Order {
+    @ManyToOne
+    @JoinColumn(name="customer_fk")
+    Customer customer;
+}
+
+customer_fk will be in orders table
+
+b) @OneToMany FK is introduced in child table
+public class Order {
+    @OneToMany
+    @JoinColumn(name="order_fk")
+    List<ListItem> ...
+}
+
+order_fk was added in "line_items" table
+
+----
+
+@Transactional: when placed on method, we make the operations in method as atomic [ commit / rollback]
+Also any changes done to the enitity in the method marked with @Transactional, dirty checking happens and updates are sent to DB [ no need for explict UPDATE call]
+
+* Built-in methods of JpaRepository are @Transactional by default, any custom operations involvig save, delete or update we need to explictly mark @Transactional
+
+----------
+
+Building RESTful Web Services: --> HTTP protocol
+Resource --> URL
+actions --> HTTP methods [ GET, POST, PUT/ PATCH , DELETE]
+Accept: text/xml
+Accept: application/json [ default enabled with Jackson library to convert java --> json]
+
+ContentType:application/json [ default enabled with jackson library to convert json --> java]
+ContentType:text/xml
+
+Any other representation other than JSON we need to configure ContentNegotiationHandler, example configure JAXB for XML
+
+@RestController
+@RequestMapping
+@GetMapping, @PostMapping, @PutMapping, @DeleteMapping 
+@RequestBody [ to inform HttpMessageConvertor to convert payload to Java]
+@ResponseBody - to inform HttpMessageConvertor to convert java to representation paylod to be sent to client] ==> Optional
+
+@RequestParam is used to read Query Parameters from URL [ http://localhost:8080/api/products?category=mobile] ==> method(@RequestParam("category") String category)
+
+@PathVariable to read Path parameter
+http://localhost:8080/api/products/4
+
+@GetMapping("/{pid}")
+method(@PathVariable("pid") int id)
+
+--------------------
+
+Day 6:
+
+Bi-directional association [ Avoid this, use it judically]
+
+```
+public class Customer {
+	@Id
+	private String email;
+	
+	@Column(name="first_name")
+	private String firstName;
+	
+	@Column(name="last_name")
+	private String lastName;
+
+    @OneToMany(mappedBy = "customer")
+	private List<Order> orders = new ArrayList<>();
+}
+
+public class Order {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int oid;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "order_date")
+	private Date orderDate = new Date(); // system date
+
+	private double total; // computed
+
+	@ManyToOne
+	@JoinColumn(name = "customer_fk")
+	private Customer customer;
+
+```
+Order o = ...
+Customer c = o.getCustomer();
+
+Customer will login
+Display all orders of the customer
+List<Order> orders = c.getOrders();
+
+======================================
+
+@OneToOne
+
+Employee and Laptop
+```
+@Entity
+@Table(name="employess")
+public class Employee {
+    @Id
+    int eid;
+    String name;
+
+    @OneToOne(mappedBy="employee")
+    Laptop laptop;
+}
+
+@Entity
+@Table(name="laptops)
+public class Laptop {
+    @Id
+    String serialNo;
+
+    String make;
+
+    @OneToOne
+    @JoinColumn(name="employee_fk")
+    Employee employee;
+}
+```
+
+============
+
+@ManyToMany
+
+Assume Employee <-----> Project is many to many
+Employee can work in multiple projects; project can have many employees
+
+Movie <---> Actor
+Movie has many actors
+Actor can work in many movies
+
+Student <--> Course
+Student enrolls for many courses.
+Course can have many students
+
+```
+employees
+eid   name       start_date      end_date
+423   Asha      20-01-2002       NULL
+522   Usha      15-4-2020       NULL
+
+projects
+pid   name  start_date   end_date   client
+1     AEM   26-10-2011   4-5-2015   HARMAN
+2     GOVT  ..          ...
+
+Link table
+employees_projects
+eid  pid
+423   1
+423   2
+522   1
+
+```
+I need to keept track of from duration of employee assocaited with project and role played in project
+
+Link table
+```
+employees_projects
+eid  pid start_date  end_date    role
+423   1  20-01-2002 23-02-2003  JR.DEVELOPER
+423   2  26-02-2003 NUL         LEAD
+522   1
+```
+Where are you going to have these extra fields?
+Solution
+
+Association Class: 
+```
+@Entity
+@Table("employees_project")
+public class EmployeeProject {
+    @Id
+    int id;
+
+    @ManyToOne
+    @JoinColumn("eid")
+    Employee employee;
+
+    @ManyToOne
+    @JoinColumn("pid")
+    Project project;
+
+    Date startDate;
+    Date endDate;
+    String role;
+}
+```
+Now assocation becomes;
+
+Employee --> OneToMany : <--- ManyToOne --- EmployeeProject ----> OneToMany; <--- ManyToOne -- Project
+
+----
+
+Movie and Actor --> extra fields are when did actor work in movie and role played in movie
+
+```
+actors
+aid   name
+1     John Travolta
+2     Uma Thurman
+3     Bruce Willis
+
+movies
+mid     name
+1       Pulp Fiction
+2       Broken Arrow
+3       Die Hard
+4       Kill Bill
+
+movie_actors
+mid   aid   role
+1     1     Main
+1     2     Short role
+1     3     
+2     1     Antogonist
+4     2 
+
+```
