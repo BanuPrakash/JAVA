@@ -2245,4 +2245,26 @@ http://localhost:8080/v3/api-docs ==> use this JSON to create custom Documentati
 http://localhost:8080/swagger-ui/index.html#/
 
 https://www.baeldung.com/swagger-operation-vs-apiresponse
+==================
+
+Security
+
+<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+AuthenticationManager
+
+AuthenticationProvider
+
+SecurityContext
+
+JSESSIONID
+KA52CRRE11
+
+
+
+
+
 
